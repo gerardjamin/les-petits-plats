@@ -2,7 +2,7 @@
 # Project Title
 
 LES PETITS PLATS est un site de recettes de cuisine.
-Interface web avec son moteur de recherche articulé sur les commandes natives for().
+Interface web avec son moteur de recherche.
 
 
 ## Authors
