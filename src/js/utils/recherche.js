@@ -1,4 +1,4 @@
-import {factoryObject } from "../factories/recetteProvider.js";
+import { factoryObject } from "../factories/recetteProvider.js";
 import {
   recupereElements,
   creationLienElement,
@@ -155,7 +155,7 @@ export const displayRecherche = (argObjetRecette) => {
  * lance la recherche du mot clé dans la description, le titre, les ingrédients de toutes les recettes (DOM)
  * @param {*} characters mot clé entré dans la zone de recherche
  * @param {*} recette nodeList des recettes affichées à l'écran. (50 recettes dans le cas de la recherche de la barre principale)
- * @param {*} tag : soit ingrédient, ustensile,appareil
+ * @param {*} tag : soit ingrédient, ustensile ou appareil
  * retourne le nom des classes des recetttes trouvées
  */
 export function filtreRecette(characters, recette, tag) {
@@ -193,17 +193,18 @@ export function filtreRecette(characters, recette, tag) {
             tabObjetTag.push(recette[i]);
             filterRecette.push(nameClass);
           }
-        }     
-        for(let k = 0; k < searchTitre.length; k++){
+        }
+        for (let k = 0; k < searchTitre.length; k++) {
           if (searchTitre[k].textContent.toLowerCase().includes(characters)) {
             filterRecette.push(nameClass);
           }
         }
-        for(let l = 0; l < searchDescription.length; l++ ){
-          if (searchDescription[l].textContent.toLowerCase().includes(characters)) {
+        for (let l = 0; l < searchDescription.length; l++) {
+          if (
+            searchDescription[l].textContent.toLowerCase().includes(characters)
+          ) {
             filterRecette.push(nameClass);
           }
-
         }
         //recoit le tableau des recettes sélectionnées et élimine les doublons
         filterRecetteElement = [...new Set(filterRecette)];
@@ -217,12 +218,13 @@ export function filtreRecette(characters, recette, tag) {
           console.error(`L'index ${i} est hors des limites du tableau.`);
         }
         //recherche des appareils sur chacune des recettes
-        searchAppareil.forEach((appareil) => {
-          if (appareil.innerHTML.includes(characters)) {
+        for (let m = 0; m < searchAppareil.length; m++) {
+          if (searchAppareil[m].innerHTML.includes(characters)) {
             tabObjetTag.push(recette[i]);
             filterRecette.push(nameClass);
           }
-        });
+        }
+
         //on élimine les doublons
         filterRecetteElement = [...new Set(filterRecette)];
       } else if (tag === "tagUstensile") {
@@ -234,12 +236,12 @@ export function filtreRecette(characters, recette, tag) {
           console.error(`L'index ${i} est hors des limites du tableau.`);
         }
         //recherche des ustensiles sur chacune des recettes
-        searchUstensile.forEach((ustensile) => {
-          if (ustensile.innerHTML.includes(characters)) {
+        for (let n = 0; n < searchUstensile.length; n++) {
+          if (searchUstensile[n].innerHTML.includes(characters)) {
             tabObjetTag.push(recette[i]);
             filterRecette.push(nameClass);
           }
-        });
+        }
         filterRecetteElement = [...new Set(filterRecette)];
       }
     } //fin for
