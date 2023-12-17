@@ -131,11 +131,6 @@ export function searchInDropdown(inputIdentificateur, ulIdentificateur) {
 export let globalTableau = [];
 let index = 0;
 
-/**
- * 
- * @param {*} tableauDeLien 
- * @param {*} tag 
- */
 export function ecouteLienDropdown(tableauDeLien, tag) {
   //recipes contient la totalité des recettes
   let recipes = factoryObject();
@@ -145,7 +140,6 @@ export function ecouteLienDropdown(tableauDeLien, tag) {
   //initialisation du tableau des contextes a l'index 0 avec la totalité des recettes (50)
   globalTableau[0] = recipes;
   let recettesSauvegardéesSearchBar = document.querySelectorAll('[class^="recipe"]');
-  
   //pose d'un écouteur sur chaque lien du dropDown
   tableauDeLien.forEach((element) => {
     const lien = element.querySelector("a");
@@ -175,7 +169,7 @@ export function ecouteLienDropdown(tableauDeLien, tag) {
 
       //recettes contient toutes les recettes qui sont affichées
       let recettes = document.querySelectorAll('[class^="recipe"]');
-      //recettesTrouvées contient tous les noms de classe des recettes qui satisfont le critère
+      //recettesTrouvées contient toutes les recettes qui satisfont le critère
       let recettesTrouvées = filtreRecette(valeurText, recettes, tag);
 
       //partie affichage
@@ -300,15 +294,6 @@ export function ecouteLienDropdown(tableauDeLien, tag) {
 
 /**
  *
- * @param {*} argument : id
- */
-export function viderDiv(argument) {
-  let maDiv = document.getElementById(`${argument}`);
-  maDiv.innerHTML = ""; // je supprime tous les éléments enfants de la div
-}
-
-/**
- *
  * @param {*} dropdown :efface la liste du dropdown
  */
 export function viderLi(dropdown) {
@@ -322,4 +307,13 @@ export function viderLi(dropdown) {
   ) {
     ulElement.removeChild(ulElement.children[1]);
   }
+}
+
+/**
+ *
+ * @param {*} argument : id
+ */
+export function viderDiv(argument) {
+  let maDiv = document.getElementById(`${argument}`);
+  maDiv.innerHTML = ""; // je supprime tous les éléments enfants de la div
 }

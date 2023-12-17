@@ -4,6 +4,7 @@ const chevronIconIngredient = document.getElementById("chevron-icon-argument");
 const chevronIconAppareil = document.getElementById("chevron-icon-appareil");
 const chevronIconUstensile = document.getElementById("chevron-icon-ustensile");
 
+//ingrédient
 chevronIconIngredient.addEventListener("click", () => {
   const bouttonIng = document.querySelector(".boutton-ingredient");
   const dropdownIngredient = document.getElementById("dropdown-ingredient");
@@ -30,6 +31,7 @@ chevronIconIngredient.addEventListener("click", () => {
   }
 }); //fin ecouteur ingredients
 
+//appareil
 chevronIconAppareil.addEventListener("click", () => {
   const bouttonIng = document.querySelector(".boutton-appareil");
   const dropdownIngredient = document.getElementById("dropdown-appareil");
@@ -55,6 +57,7 @@ chevronIconAppareil.addEventListener("click", () => {
   }
 }); //fin ecouteur Appareil
 
+//ustensile
 chevronIconUstensile.addEventListener("click", () => {
   const bouttonIng = document.querySelector(".boutton-ustensile");
   const dropdownIngredient = document.getElementById("dropdown-ustensile");

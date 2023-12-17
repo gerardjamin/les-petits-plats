@@ -5,7 +5,7 @@ import {
   miseAjourDeLaListeDropdown,
   ecouteLienDropdown,
   viderDiv,
-} from "./utils.js";
+} from "../utils/utils.js";
 
 //initialisation des noeuds
 const searchInput = document.getElementById("searchInput");
@@ -20,7 +20,6 @@ let index = 0;
 let tabObjetTag = [];
 let recipeElement = [];
 let characters = "";
-let tableauDeNodes = [];
 
 //-----------------------------partie recherche barre principale---------------------------------
 //Ajoutez un écouteur d'événements sur la barre de recherche
@@ -41,7 +40,7 @@ searchInput.addEventListener("keyup", (e) => {
   if (characters.length < 3) {
     index = 0;
 
-    //remplissage de spaceRecette avec la totalité des recettes (50)
+    //remplissage de spaceRecette avec la totalité des recettes
     recipes.forEach((recipeElement) => {
       index += 1;
       //Ajoute chaque recette à la section spaceRecette pour affichage de la page d'accueuil
@@ -50,7 +49,7 @@ searchInput.addEventListener("keyup", (e) => {
     //compte le nombre de recettes pour l'affichage du nombre de recettes
     compteur.innerHTML = `${index} RECETTES`;
 
-    //selection des recettes présentent dans spaceRecette
+    //selection des recettes présentent dans spaceRecette 
     let displayRecettes = document.querySelectorAll('[class^="recipe"]');
     //récuperation des différents éléments
     let ingredient = recupereElements(displayRecettes, ".ingredient");
@@ -68,9 +67,10 @@ searchInput.addEventListener("keyup", (e) => {
     ecouteLienDropdown(ingredientNode);
     ecouteLienDropdown(appareilNode);
     ecouteLienDropdown(ustensileNode);
+
   } else {
     // recherche des ingredients sur les recettes affichées soit 50 recettes et
-    //retourne le nom des classes des recettes trouvées
+    //retourne les recettes trouvées
     recherches = filtreRecette(characters, recette, "tagIngredient");
     // Trouver les cardElements et les stocker
     recherches.forEach((recherche) => {
@@ -85,9 +85,9 @@ searchInput.addEventListener("keyup", (e) => {
     //affichage du résultat de la recherche
     displayRecherche(recipeElement);
 
-    //selection des recettes présentent dans spaceRecette
+    //selection des recettes présentent dans spaceRecette 
     let displayRecettes = document.querySelectorAll('[class^="recipe"]');
-    //récuperation des différents éléments pour mise à jour des dropdown
+    //récuperation des différents éléments
     let ingredient = recupereElements(displayRecettes, ".ingredient");
     let appareil = recupereElements(displayRecettes, ".appliance");
     let ustensile = recupereElements(displayRecettes, ".ustensile");
@@ -155,8 +155,6 @@ export const displayRecherche = (argObjetRecette) => {
  * lance la recherche du mot clé dans la description, le titre, les ingrédients de toutes les recettes (DOM)
  * @param {*} characters mot clé entré dans la zone de recherche
  * @param {*} recette nodeList des recettes affichées à l'écran. (50 recettes dans le cas de la recherche de la barre principale)
- * @param {*} tag : soit ingrédient, ustensile ou appareil
- * retourne le nom des classes des recetttes trouvées
  */
 export function filtreRecette(characters, recette, tag) {
   let filterRecette = [];
@@ -170,83 +168,71 @@ export function filtreRecette(characters, recette, tag) {
   //le mot clef entré dans la barre principale dois etre strictement superieur à 2 caracteres
   if (characters.length > 2) {
     //pour chacune des recettes présente dans spaceRecette (cad affichées à l'écran (DOM))
-    for (let i = 0; i < recette.length; i++) {
-      // recupere le nom de chacune des classes (recette01,recette02....)
-      let nameClass = recette[i].classList[0];
-      //Convertion de la NodeList en un tableau pour la recherhe des ustensiles et appareils
-      let tableauRecette = Array.from(recette);
+    //console.time('version2')
+    let debut = performance.now()
+      recette.forEach((recipe) => {
+            let nameClass = recipe.classList[0]
+            if (tag === "tagIngredient") {
+              
+              searchIngredient = document.querySelectorAll(
+                `.${nameClass} .ingredient`
+              );
+              const searchTitre = document.querySelectorAll(
+                `.${nameClass} #titreRecette`
+              );
+              const searchDescription = document.querySelectorAll(
+                `.${nameClass} #description`
+              );
 
-      if (tag === "tagIngredient") {
-        searchIngredient = document.querySelectorAll(
-          `.${nameClass} .ingredient`
-        );
-        const searchTitre = document.querySelectorAll(
-          `.${nameClass} #titreRecette`
-        );
-        const searchDescription = document.querySelectorAll(
-          `.${nameClass} #description`
-        );
-
-        //--------recherche des ingredients dans ingrédient,titre,description sur chacune des recettes---------
-        for (let j = 0; j < searchIngredient.length; j++) {
-          if (searchIngredient[j].innerHTML.includes(characters)) {
-            tabObjetTag.push(recette[i]);
-            filterRecette.push(nameClass);
-          }
-        }
-        for (let k = 0; k < searchTitre.length; k++) {
-          if (searchTitre[k].textContent.toLowerCase().includes(characters)) {
-            filterRecette.push(nameClass);
-          }
-        }
-        for (let l = 0; l < searchDescription.length; l++) {
-          if (
-            searchDescription[l].textContent.toLowerCase().includes(characters)
-          ) {
-            filterRecette.push(nameClass);
-          }
-        }
-        //recoit le tableau des recettes sélectionnées et élimine les doublons
-        filterRecetteElement = [...new Set(filterRecette)];
-      } else if (tag === "tagAppareil") {
-        // Vérifier que l'index i est valide
-        if (i >= 0 && i < tableauRecette.length) {
-          searchAppareil = tableauRecette[i].querySelectorAll(
-            `.${nameClass} .appliance`
-          );
-        } else {
-          console.error(`L'index ${i} est hors des limites du tableau.`);
-        }
-        //recherche des appareils sur chacune des recettes
-        for (let m = 0; m < searchAppareil.length; m++) {
-          if (searchAppareil[m].innerHTML.includes(characters)) {
-            tabObjetTag.push(recette[i]);
-            filterRecette.push(nameClass);
-          }
-        }
-
-        //on élimine les doublons
-        filterRecetteElement = [...new Set(filterRecette)];
-      } else if (tag === "tagUstensile") {
-        if (i >= 0 && i < tableauRecette.length) {
-          searchUstensile = tableauRecette[i].querySelectorAll(
-            `.${nameClass} .ustensile`
-          );
-        } else {
-          console.error(`L'index ${i} est hors des limites du tableau.`);
-        }
-        //recherche des ustensiles sur chacune des recettes
-        for (let n = 0; n < searchUstensile.length; n++) {
-          if (searchUstensile[n].innerHTML.includes(characters)) {
-            tabObjetTag.push(recette[i]);
-            filterRecette.push(nameClass);
-          }
-        }
-        filterRecetteElement = [...new Set(filterRecette)];
-      }
-    } //fin for
+              //--------recherche des ingredients sur chacune des recettes---------
+              searchIngredient.forEach((ingredient) => {
+                if (ingredient.innerHTML.includes(characters)) {
+                  tabObjetTag.push(recipe)
+                  filterRecette.push(nameClass);
+                }
+              });
+              searchTitre.forEach((titre) => {
+                if (titre.textContent.toLowerCase().includes(characters)) {
+                  filterRecette.push(nameClass);
+                }
+              });
+              searchDescription.forEach((description) => {
+                if (description.textContent.toLowerCase().includes(characters)) {
+                  filterRecette.push(nameClass);
+                }
+              });
+              //recoit le tableau des recettes sélectionnées et élimine les doublons
+              filterRecetteElement = [...new Set(filterRecette)];
+              
+            } else if (tag === "tagAppareil") {
+              //recherche des appareils sur chacune des recettes
+              searchAppareil = recipe.querySelectorAll( `.${nameClass} .appliance`)
+              searchAppareil.forEach((appareil) => {
+                if (appareil.innerHTML.includes(characters)) {
+                  tabObjetTag.push(recipe)
+                  filterRecette.push(nameClass);
+                }
+              });
+              //on élimine les doublons
+              filterRecetteElement = [...new Set(filterRecette)];
+            } else if (tag === "tagUstensile") {
+              //recherche des ustensiles sur chacune des recettes
+              searchUstensile = recipe.querySelectorAll( `.${nameClass} .ustensile`)
+              searchUstensile.forEach((ustensile) => {
+                if (ustensile.innerHTML.includes(characters)) {
+                  tabObjetTag.push(recipe)
+                  filterRecette.push(nameClass);
+                }
+              });
+              filterRecetteElement = [...new Set(filterRecette)];
+            }
+    }) //fin forEach
+    //vérification des performances JS de la recherche principale avec la methode forEach()
+    //console.timeEnd('version2')
+    let fin = performance.now()
+    let tempsExecution = fin - debut
+    console.log(`Le recherche a pris ${tempsExecution} millisecondes pour s'exécuter.`)
   } //fin if
-
   return filterRecetteElement;
 } //fin fonction
 
@@ -293,36 +279,7 @@ let message = (recherche) => {
   Recette.appendChild(newDiv);
 };
 
-//-----------------------------partie recherche par tag---------------------------------
-/**
- *
- * @param {*} characteresTag :nom du tag
- * @param {*} tag type de tag
- * @returns
- */
-export function rechergeTag(characteresTag, tag) {
-  // objet du DOM qui contient toutes les recettes (recette1,recette2...) affichées a l'ecran
-  let recette = document.querySelectorAll('[class^="recipe"]');
 
-  //utilisé par les Tag avec la recherche principale
-  if (tag) {
-    //memorisation des recettes selectionnées a chaque recherche par Tag et retrait des doublons
-    recette = [...new Set(recipeElement)];
-  }
-  //si aucun mot clef dans la barre principale
-  if (characters === "") {
-    //le tableau stocke les recettes selectionnées par une recherche Tag a N-1
-    tableauDeNodes.push(recette);
-  }
-  // recherches[]: tableau qui contient le nom de classe des recettes qui contiennent l'ingredient recherché
-  let recherches = filtreRecette(characteresTag, recette, tag);
 
-  //tabObjetTag[]: tableau javasript qui contient les recettes avec l'ingrédient recherché
-  //utilise un tableau d'objet
-  displayRecherche(tabObjetTag);
 
-  //initialisation du tableau entre chaque recherche par Tag
-  tabObjetTag = [];
-
-  return recherches;
-}
+      
