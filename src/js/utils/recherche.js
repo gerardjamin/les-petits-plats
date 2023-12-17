@@ -169,6 +169,7 @@ export function filtreRecette(characters, recette, tag) {
   //le mot clef entré dans la barre principale dois etre strictement superieur à 2 caracteres
   if (characters.length > 2) {
     //pour chacune des recettes présente dans spaceRecette (cad affichées à l'écran (DOM))
+    let debut = performance.now()
       recette.forEach((recipe) => {
             let nameClass = recipe.classList[0]
             if (tag === "tagIngredient") {
@@ -226,6 +227,9 @@ export function filtreRecette(characters, recette, tag) {
               filterRecetteElement = [...new Set(filterRecette)];
             }
     }) //fin forEach
+    let fin = performance.now()
+    let tempsExecution = fin - debut
+    console.log(`Le recherche a pris ${tempsExecution} millisecondes pour s'exécuter.`)
   } //fin if
 
   return filterRecetteElement;
