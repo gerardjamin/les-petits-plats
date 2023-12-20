@@ -42,7 +42,7 @@ recipe.ingredients.forEach(({ ingredient, quantity, unit}) => {
 
   article.innerHTML = `
 <div class="w-[410px] h-[731px] relative bg-white rounded-[21px] shadow">
-    <img class="rounded-t-[21px] w-[410px] h-[253px] left-0 top-0 absolute" src="../../assets/images/Photos/${recipe.image}" alt="images les petits plats" />
+    <img class="rounded-t-[21px] w-[410px] h-[253px] left-0 top-0 absolute" src="../assets/images/Photos/${recipe.image}" alt="images les petits plats" />
 
      <div id="titreRecette" class="titreRecette left-[25px] top-[285px] absolute text-black text-lg font-normal font-anton">${recipe.name}</div>
 
