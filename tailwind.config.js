@@ -8,12 +8,12 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'image':'url("background-image.jpg")',
-        'loop':'url("LogoLoupe.jpg")',
-        'loopHover':'url("LogoLoupeHover.jpg")',
-        'loopInput':'url("loupe-input.jpg")',
-        'croix':'url("croix.jpg")',
-        'croixTag':'url("croix.svg")',
+        'image':'url("/assets/background-image.jpg")',
+        'loop':'url("/assets/LogoLoupe.jpg")',
+        'loopHover':'url("/assets/LogoLoupeHover.jpg")',
+        'loopInput':'url("/assets/loupe-input.jpg")',
+        'croix':'url("/assets/croix.jpg")',
+        'croixTag':'url("/assets/croix.svg")',
       },
       height: {
         '667': '667px',
