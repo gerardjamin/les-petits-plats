@@ -1,19 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.html',
+    '*.html',
     './src/**/*.js',
     // Ajoutez d'autres chemins de fichiers si nécessaire
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'image':'url("/assets/background-image.jpg")',
-        'loop':'url("/assets/LogoLoupe.jpg")',
-        'loopHover':'url("/assets/LogoLoupeHover.jpg")',
-        'loopInput':'url("/assets/loupe-input.jpg")',
-        'croix':'url("/assets/croix.jpg")',
-        'croixTag':'url("/assets/croix.svg")',
+        'image':'url("./assets/background-image.jpg")',
+        'loop':'url("./assets/LogoLoupe.jpg")',
+        'loopHover':'url("./assets/LogoLoupeHover.jpg")',
+        'loopInput':'url("./assets/loupe-input.jpg")',
+        'croix':'url("./assets/croix.jpg")',
+        'croixTag':'url("./assets/croix.svg")',
       },
       height: {
         '667': '667px',
