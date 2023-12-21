@@ -745,10 +745,6 @@ video {
   width: 100px;
 }
 
-.w-\[203px\]{
-  width: 203px;
-}
-
 .w-\[180px\]{
   width: 180px;
 }
@@ -764,6 +760,7 @@ video {
 .w-\[320px\]{
   width: 320px;
 }
+
 .w-\[350px\]{
   width: 350px;
 }
@@ -924,34 +921,29 @@ video {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.bg-amber-300{
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 211 77 / var(--tw-bg-opacity));
-}
-
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-croix{
-  background-image: url("./assets/croix.jpg");
+  background-image: url("../assets/croix.jpg");
 }
 
 .bg-croixTag{
-  background-image: url("./assets/croix.svg");
+  background-image: url("../assets/croix.svg");
 }
 
 .bg-image{
-  background-image: url("./assets/background-image.jpg");
+  background-image: url("../assets/background-image.jpg");
 }
 
 .bg-loop{
-  background-image: url("./assets/LogoLoupe.jpg");
+  background-image: url("../assets/LogoLoupe.jpg");
 }
 
 .bg-loopInput{
-  background-image: url("./assets/loupe-input.jpg");
+  background-image: url("../assets/loupe-input.jpg");
 }
 
 .bg-cover{
@@ -1133,11 +1125,6 @@ video {
   --tw-ring-opacity: 0.05;
 }
 
-.invert{
-  --tw-invert: invert(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1148,15 +1135,15 @@ video {
 }
 
 .hover\:bg-croix:hover{
-  background-image: url("./assets/croix.jpg");
+  background-image: url("../assets/croix.jpg");
 }
 
 .hover\:bg-croixTag:hover{
-  background-image: url("./assets/croix.svg");
+  background-image: url("../assets/croix.svg");
 }
 
 .hover\:bg-loopHover:hover{
-  background-image: url("/assets/LogoLoupeHover.jpg");
+  background-image: url("../assets/LogoLoupeHover.jpg");
 }
 
 .focus\:outline-none:focus{
