@@ -9,7 +9,7 @@ temps d'exécution moyen = 57,7 ms
 
 ## Authors
 
-- [@gerardjamin]( https://github.com/gerardjamin/les-petits-plats.git)
+- [@gerardjamin]( https://gerardjamin.github.io/les-petits-plats/)
 
 
 ## 🚀 About Me
