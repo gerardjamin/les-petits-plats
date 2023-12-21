@@ -8,11 +8,11 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'image':'url("/les-petits-plats/assets/background-image.jpg")',
-        'loop':'url("/les-petits-plats/assets/LogoLoupe.jpg")',
+        'image':'url("https://github.com/gerardjamin/les-petits-plats/assets/background-image.jpg")',
+        'loop':'url("../les-petits-plats/assets/LogoLoupe.jpg")',
         'loopHover':'url("/les-petits-plats/assets/LogoLoupeHover.jpg")',
         'loopInput':'url("/les-petits-plats/assets/loupe-input.jpg")',
-        'croix':'url("/les-petits-plats/assets/croix.jpg")',
+        'croix':'url("./les-petits-plats/assets/croix.jpg")',
         'croixTag':'url("/les-petits-plats/assets/croix.svg")',
       },
       height: {
