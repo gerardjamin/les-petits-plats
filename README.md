@@ -7,12 +7,13 @@ La mesure moyenne de la performance dans le cas d'une recherche d'ingrédient da
 
 ## Authors
 
-- [@gerardjamin]( https://github.com/gerardjamin/les-petits-plats.git)
-
+- [@gerardjamin]( https://github.com/gerardjamin)
 
 ## 🚀 About Me
 Je suis étudiant chez OpenClassRoom et ce projet est le numero 7
 
+## Le site
+[@Les-petits-plats](https://gerardjamin.github.io/les-petits-plats/)
 
 ## Roadmap
 
