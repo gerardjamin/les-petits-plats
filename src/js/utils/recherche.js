@@ -47,6 +47,9 @@ searchInput.addEventListener("keyup", (e) => {
       //Ajoute chaque recette à la section spaceRecette pour affichage de la page d'accueuil
       spaceRecette.insertAdjacentHTML("beforeend", recipeElement.outerHTML);
     });
+      let maDiv = document.getElementById("divMessage");
+      //effacement du message et affichage de l'ensemble des recettes
+      if (maDiv !== null) { maDiv.remove(); }
     //compte le nombre de recettes pour l'affichage du nombre de recettes
     compteur.innerHTML = `${index} RECETTES`;
 
