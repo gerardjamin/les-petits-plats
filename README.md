@@ -9,7 +9,6 @@ La mesure moyenne de la performance dans le cas d'une recherche d'ingrédient da
 
 - [@gerardjamin]( https://github.com/gerardjamin)
 
-
 ## 🚀 About Me
 Je suis étudiant chez OpenClassRoom et ce projet est le numero 7
 
