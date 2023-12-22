@@ -2,10 +2,8 @@
 # Project Title
 
 LES PETITS PLATS est un site de recettes de cuisine.
-Interface web avec son moteur de recherche articulé sur les méthodes forEach().
-Sa performance dans le cas d'une recherche d'ingrédient (carotte) 
-répété 10 fois dans la barre principale est de:
-temps d'exécution moyen = 56,47 ms
+C'est une interface web avec son moteur de recherche articulé sur les méthode  forEach().
+La mesure moyenne de la performance dans le cas d'une recherche d'ingrédient dans la barre principale est de 56.4ms
 
 ## Authors
 
