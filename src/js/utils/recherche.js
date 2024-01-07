@@ -26,6 +26,7 @@ let tableauDeNodes = [];
 //Ajoutez un écouteur d'événements sur la barre de recherche
 searchInput.addEventListener("keyup", (e) => {
   // recette = objet du DOM qui contient toutes les recettes (recette1,recette2...) affichées à l'écran soit 50 recettes (totalité de la base de données)
+  //[class^="recipe"] : sélectionne toutes les classes a l'écran commençant par recipe
   const recette = document.querySelectorAll('[class^="recipe"]');
   characters = e.target.value.trim();
   //initialisation des tableaux
