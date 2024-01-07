@@ -26,6 +26,7 @@ let tableauDeNodes = [];
 //Ajoutez un écouteur d'événements sur la barre de recherche
 searchInput.addEventListener("keyup", (e) => {
   // recette = objet du DOM qui contient toutes les recettes (recette1,recette2...) affichées à l'écran soit 50 recettes (totalité de la base de données)
+  //[class^="recipe"] : sélectionne toutes les classes a l'écran commençant par recipe
   const recette = document.querySelectorAll('[class^="recipe"]');
   characters = e.target.value.trim();
   //initialisation des tableaux
@@ -41,7 +42,7 @@ searchInput.addEventListener("keyup", (e) => {
   if (characters.length < 3) {
     index = 0;
 
-    //remplissage de spaceRecette avec la totalité des recettes
+    //arret de la recherche et remplissage de spaceRecette avec la totalité des recettes
     recipes.forEach((recipeElement) => {
       index += 1;
       //Ajoute chaque recette à la section spaceRecette pour affichage de la page d'accueuil
@@ -73,7 +74,7 @@ searchInput.addEventListener("keyup", (e) => {
     ecouteLienDropdown(ustensileNode);
 
   } else {
-    // recherche des ingredients sur les recettes affichées soit 50 recettes et
+    // on fait une recherche  sur les recettes affichées soit 50 recettes et
     //retourne les recettes trouvées
     recherches = filtreRecette(characters, recette, "tagIngredient");
     // Trouver les cardElements et les stocker
@@ -248,6 +249,7 @@ export function filtreRecette(characters, recette, tag) {
         filterRecetteElement = [...new Set(filterRecette)];
       }
     } //fin for
+    
     let fin = performance.now()
     let tempsExecution = fin - debut
     console.log(`Le recherche a pris ${tempsExecution} millisecondes pour s'exécuter.`)
